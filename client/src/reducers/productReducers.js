@@ -6,6 +6,7 @@ import {
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
   CLEAR_PRODUCT_DETAILS,
+  CLEAR_LIST_PRODUCTS,
 } from '../actions/types';
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -16,6 +17,8 @@ export const productListReducer = (state = { products: [] }, action) => {
       return { loading: false, products: action.payload };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
+    case CLEAR_LIST_PRODUCTS:
+      return { loading: true, product: [] };
     default:
       return state;
   }

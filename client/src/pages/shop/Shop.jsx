@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import Product from '../../components/product/Product';
 import Loader from '../../components/loader/Loader';
 import Message from '../../components/message/Message';
-import { listProducts } from '../../actions/productActions';
+import { listProducts, clearProducts } from '../../actions/productActions';
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,10 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(listProducts());
+
+    return () => {
+      dispatch(clearProducts());
+    };
   }, [dispatch]);
 
   return (

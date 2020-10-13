@@ -3,6 +3,7 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  CLEAR_LIST_PRODUCTS,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -28,6 +29,10 @@ export const listProducts = () => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const clearProducts = () => async (dispatch) => {
+  dispatch({ type: CLEAR_LIST_PRODUCTS, payload: [] });
 };
 
 export const listProductDetails = (id) => async (dispatch) => {
