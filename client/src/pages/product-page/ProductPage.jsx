@@ -4,7 +4,10 @@ import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
 import Rating from '../../components/rating/Rating';
 import Loader from '../../components/loader/Loader';
 import Message from '../../components/message/Message';
-import { listProductDetails } from '../../actions/productActions';
+import {
+  listProductDetails,
+  clearProductDetails,
+} from '../../actions/productActions';
 
 const ProductPage = ({ match }) => {
   const dispatch = useDispatch();
@@ -14,9 +17,11 @@ const ProductPage = ({ match }) => {
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match]);
 
-  console.log(product);
+    return () => {
+      dispatch(clearProductDetails());
+    };
+  }, [dispatch, match]);
 
   return (
     <>
