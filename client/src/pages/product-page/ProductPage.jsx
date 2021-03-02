@@ -9,6 +9,8 @@ import {
   clearProductDetails,
 } from '../../actions/productActions';
 
+import { addProductToCart } from '../../actions/cartActions';
+
 const ProductPage = ({ match }) => {
   const dispatch = useDispatch();
 
@@ -22,6 +24,17 @@ const ProductPage = ({ match }) => {
       dispatch(clearProductDetails());
     };
   }, [dispatch, match]);
+
+  const productToCart = {
+    id: product._id,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+  };
+
+  const addToCart = (product) => {
+    dispatch(addProductToCart(product));
+  };
 
   return (
     <>
@@ -57,6 +70,7 @@ const ProductPage = ({ match }) => {
                   <p className="text-center"> Out of stock</p>
                 )}
                 <Button
+                  onClick={() => addToCart(productToCart)}
                   className="btn-block"
                   type="button"
                   disabled={product.countInStock === 0}
